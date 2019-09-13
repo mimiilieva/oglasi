@@ -11,6 +11,9 @@ import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
 import DirectionsCarTwoToneIcon from '@material-ui/icons/DirectionsCarTwoTone';
 import LaptopMacTwoToneIcon from '@material-ui/icons/LaptopMacTwoTone';
 import EmojiSymbolsTwoToneIcon from '@material-ui/icons/EmojiSymbolsTwoTone';
+import { connect } from "react-redux";
+import {Link as RouterLink} from 'react-router-dom';
+import NavigationPost from './navigation/NavigationPost'
 
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
@@ -51,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function LandingPage() {
+function LandingPage() {
   const classes = useStyles();
 
   return (
@@ -83,10 +86,7 @@ export default function LandingPage() {
                 quickly and efficiently about what&apos;s most interesting in
                 this post&apos;s contents.
               </Typography>
-              <Button size="large" variant="contained" color="secondary">
-                Внеси оглас
-                <AddIcon />
-              </Button>
+              <NavigationPost/>
             </div>
           </Grid>
         </Grid>
@@ -151,3 +151,17 @@ export default function LandingPage() {
     </React.Fragment>
   );
 }
+const mapStateToProps = state =>{
+    return {
+      auth : state.auth
+    }
+}
+const mapDispatchToProps = dispatch =>{
+  return {
+
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LandingPage)

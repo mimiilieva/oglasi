@@ -16,6 +16,8 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux'
+import NavigationUser from './NavigationUser'
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -90,7 +92,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Navigation() {
+function Navigation() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -206,9 +208,9 @@ export default function Navigation() {
               <Link className={classes.link}>Огласи</Link>
               <Link className={classes.link}>Контакт</Link>
             </Typography>
-            <Button variant="contained" color="default" className={classes.button}>
-              Најави се     
-            </Button>
+              
+              <NavigationUser/>
+              
           </div>
           {/* <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
@@ -250,3 +252,19 @@ export default function Navigation() {
     </div>
   );
 }
+const mapStateToProps = state => {
+    return{
+      auth : state.auth
+    }
+
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navigation)

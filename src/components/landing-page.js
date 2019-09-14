@@ -4,17 +4,10 @@ import Navigation from "./navigation/navigation";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import Link from "@material-ui/core/Link";
-import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
-import DirectionsCarTwoToneIcon from '@material-ui/icons/DirectionsCarTwoTone';
-import LaptopMacTwoToneIcon from '@material-ui/icons/LaptopMacTwoTone';
-import EmojiSymbolsTwoToneIcon from '@material-ui/icons/EmojiSymbolsTwoTone';
 import { connect } from "react-redux";
-import {Link as RouterLink} from 'react-router-dom';
-import NavigationPost from './navigation/NavigationPost'
-import Divider from '@material-ui/core/Divider'
+import { Link as RouterLink } from "react-router-dom";
+import NavigationPost from "./navigation/NavigationPost";
+import CategoriesStyles from "./categoriesStyle";
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
     position: "relative",
@@ -43,22 +36,10 @@ const useStyles = makeStyles(theme => ({
       paddingRight: 0
     }
   },
-  paper: {
-    padding: "20px",
-    border: "3px solid #e91e63",
-    color: "#e91e63",
-    width : '150px',
-    textAlign : 'center',
-    margin : 'auto'
-  },
-  icon: {
-      fontSize: "50px",
-  },
-  category : {
-    textAlign : 'center',
-    padding: theme.spacing.unit * 2,
+  category: {
+    textAlign: "center",
+    padding: theme.spacing.unit * 2
   }
-
 }));
 
 function LandingPage() {
@@ -93,88 +74,27 @@ function LandingPage() {
                 quickly and efficiently about what&apos;s most interesting in
                 this post&apos;s contents.
               </Typography>
-              <NavigationPost/>
+              <NavigationPost />
             </div>
           </Grid>
         </Grid>
       </Paper>
       <Grid item md={12} className={classes.category}>
-        <Typography variant="h5">
-          Огласи по категории
-        </Typography>
-        
+        <Typography variant="h5">Огласи по категории</Typography>
       </Grid>
-      <Grid
-        container
-        alignItems="center"
-        justify="space-evenly"
-        direction="row"
-      >
-        <Grid item>
-          <Link>
-            <Paper className={classes.paper}>
-              <Grid continer>
-                <Grid item>
-                  <HomeTwoToneIcon color="secondary" className={classes.icon}></HomeTwoToneIcon>
-                </Grid>
-                <Grid item>
-                  <Typography noWrap >Живеалишта</Typography>
-                </Grid>
-              </Grid>
-            </Paper>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Paper className={classes.paper}>
-          <Grid continer>
-                <Grid item>
-                  <DirectionsCarTwoToneIcon color="secondary" className={classes.icon}></DirectionsCarTwoToneIcon>
-                </Grid>
-                <Grid item>
-                  <Typography noWrap>Автомобили</Typography>
-                </Grid>
-              </Grid>
-          </Paper>
-        </Grid>
-        <Grid item>
-          <Paper className={classes.paper}>
-          <Grid continer>
-                <Grid item>
-                  <LaptopMacTwoToneIcon color="secondary" className={classes.icon}></LaptopMacTwoToneIcon>
-                </Grid>
-                <Grid item>
-                  <Typography noWrap>Електроника</Typography>
-                </Grid>
-              </Grid>
-          </Paper>
-        </Grid>
-        <Grid item>
-          <Paper className={classes.paper}>
-          <Grid continer>
-                <Grid item>
-                  <EmojiSymbolsTwoToneIcon color="secondary" className={classes.icon}></EmojiSymbolsTwoToneIcon>
-                </Grid>
-                <Grid item>
-                  <Typography noWrap>Услуги</Typography>
-                </Grid>
-              </Grid>
-          </Paper>
-        </Grid>
-      </Grid>
+      <CategoriesStyles />
     </React.Fragment>
   );
 }
-const mapStateToProps = state =>{
-    return {
-      auth : state.auth
-    }
-}
-const mapDispatchToProps = dispatch =>{
+const mapStateToProps = state => {
   return {
-
-  }
-}
+    auth: state.auth
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {};
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LandingPage)
+)(LandingPage);

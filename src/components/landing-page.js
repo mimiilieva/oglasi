@@ -14,7 +14,7 @@ import EmojiSymbolsTwoToneIcon from '@material-ui/icons/EmojiSymbolsTwoTone';
 import { connect } from "react-redux";
 import {Link as RouterLink} from 'react-router-dom';
 import NavigationPost from './navigation/NavigationPost'
-
+import Divider from '@material-ui/core/Divider'
 const useStyles = makeStyles(theme => ({
   mainFeaturedPost: {
     position: "relative",
@@ -47,11 +47,18 @@ const useStyles = makeStyles(theme => ({
     padding: "20px",
     border: "3px solid #e91e63",
     color: "#e91e63",
-    width: "100px"
+    width : '150px',
+    textAlign : 'center',
+    margin : 'auto'
   },
   icon: {
-      fontSize: "50px"
+      fontSize: "50px",
+  },
+  category : {
+    textAlign : 'center',
+    padding: theme.spacing.unit * 2,
   }
+
 }));
 
 function LandingPage() {
@@ -91,6 +98,12 @@ function LandingPage() {
           </Grid>
         </Grid>
       </Paper>
+      <Grid item md={12} className={classes.category}>
+        <Typography variant="h5">
+          Огласи по категории
+        </Typography>
+        
+      </Grid>
       <Grid
         container
         alignItems="center"
@@ -105,7 +118,7 @@ function LandingPage() {
                   <HomeTwoToneIcon color="secondary" className={classes.icon}></HomeTwoToneIcon>
                 </Grid>
                 <Grid item>
-                  <Typography>Живеалишта</Typography>
+                  <Typography noWrap >Живеалишта</Typography>
                 </Grid>
               </Grid>
             </Paper>
@@ -118,7 +131,7 @@ function LandingPage() {
                   <DirectionsCarTwoToneIcon color="secondary" className={classes.icon}></DirectionsCarTwoToneIcon>
                 </Grid>
                 <Grid item>
-                  <Typography>Автомобили</Typography>
+                  <Typography noWrap>Автомобили</Typography>
                 </Grid>
               </Grid>
           </Paper>
@@ -130,7 +143,7 @@ function LandingPage() {
                   <LaptopMacTwoToneIcon color="secondary" className={classes.icon}></LaptopMacTwoToneIcon>
                 </Grid>
                 <Grid item>
-                  <Typography>Електроника</Typography>
+                  <Typography noWrap>Електроника</Typography>
                 </Grid>
               </Grid>
           </Paper>
@@ -142,7 +155,7 @@ function LandingPage() {
                   <EmojiSymbolsTwoToneIcon color="secondary" className={classes.icon}></EmojiSymbolsTwoToneIcon>
                 </Grid>
                 <Grid item>
-                  <Typography>Услуги</Typography>
+                  <Typography noWrap>Услуги</Typography>
                 </Grid>
               </Grid>
           </Paper>

@@ -47,7 +47,7 @@ function Copyright() {
   const styles = theme => ({
     '@global': {
       body: {
-        backgroundColor: theme.palette.common.white,
+        backgroundColor: "#F8BBD0",
       },
     },
     paper: {
@@ -55,6 +55,7 @@ function Copyright() {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      padding: 20
     },
     avatar: {
       margin: theme.spacing(1),
@@ -82,7 +83,7 @@ function Copyright() {
       return (
         <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <div className={classes.paper}>
+        <Paper className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
@@ -129,7 +130,7 @@ function Copyright() {
               </Grid>
             </Grid>
           </form>
-        </div>
+        </Paper>
         <Box mt={8}>
           <Copyright />
         </Box>

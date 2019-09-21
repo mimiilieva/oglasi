@@ -18,6 +18,7 @@ import Link from "@material-ui/core/Link";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import NavigationUser from "./NavigationUser";
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -30,7 +31,11 @@ const useStyles = makeStyles(theme => ({
     display: "none",
     [theme.breakpoints.up("sm")]: {
       display: "block"
-    }
+    },
+    color : 'white',
+    '&:hover': {
+      color : 'pink',
+ }
   },
   search: {
     position: "relative",
@@ -81,7 +86,11 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     color: "white",
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    "&:hover": {
+      color : 'white'
+    },
+    fontSize : '15px'
   },
   button: {
     color: "white",
@@ -89,7 +98,7 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     background: "linear-gradient(45deg, #2196F3 30%, #21CBliF3 90%)"
-  }
+  },
 }));
 
 function Navigation() {
@@ -178,9 +187,12 @@ function Navigation() {
     <div className={classes.grow}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            ОгласиМК
-          </Typography>
+        <Typography className={classes.title} variant="h6" noWrap>
+        <HomeOutlinedIcon/>
+                    <Link href={"/"} className={classes.link}>
+                    ОгласиМК
+                    </Link>
+               </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -196,11 +208,16 @@ function Navigation() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <Typography variant="h6">
-              <Link className={classes.link}>Огласи</Link>
-              <Link className={classes.link}>Контакт</Link>
-            </Typography>
-
+          <Typography className={classes.title} variant="h6" noWrap>
+                    <Link href={"/oglasi"} className={classes.link}>
+                    Најнови огласи
+                    </Link>
+               </Typography>
+              <Typography className={classes.title} variant="h6" noWrap>
+                    <Link href={"/contact"} className={classes.link}>
+                     Контакт
+                    </Link>
+               </Typography>
             <NavigationUser />
           </div>
           <div className={classes.sectionMobile}>

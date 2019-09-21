@@ -16,8 +16,15 @@ const styles = theme => ({
         color: "#e91e63",
         width: "150px",
         textAlign: "center",
-        margin: "auto"
+        margin: "auto",
+        "&:hover": {
+          backgroundColor: 'pink'
+        },
       },
+      link : {
+        color: "#e91e63"
+      },
+     
       icon: {
         fontSize: "50px"
       }})
@@ -41,8 +48,12 @@ class CategoriesStyles extends React.Component {
                     className={classes.icon}
                   ></HomeTwoToneIcon>
                 </Grid>
-                <Grid item>
-                  <Typography noWrap>Живеалишта</Typography>
+                <Grid item >
+                  <Typography noWrap>
+                    <Link href={"/oglasi"} className={classes.link}>
+                    Живеалишта
+                    </Link>
+                    </Typography>
                 </Grid>
               </Grid>
             </Paper>
@@ -58,7 +69,11 @@ class CategoriesStyles extends React.Component {
                 ></DirectionsCarTwoToneIcon>
               </Grid>
               <Grid item>
-                <Typography noWrap>Автомобили</Typography>
+                <Typography noWrap>
+                <Link href={"/oglasi"} className={classes.link}>
+                Автомобили
+                    </Link>
+                  </Typography>
               </Grid>
             </Grid>
           </Paper>
@@ -73,7 +88,11 @@ class CategoriesStyles extends React.Component {
                 ></LaptopMacTwoToneIcon>
               </Grid>
               <Grid item>
-                <Typography noWrap>Електроника</Typography>
+                <Typography noWrap>
+                <Link href={"/oglasi"} className={classes.link}>
+                    Електроника
+                    </Link>
+                  </Typography>
               </Grid>
             </Grid>
           </Paper>
@@ -88,7 +107,11 @@ class CategoriesStyles extends React.Component {
                 ></EmojiSymbolsTwoToneIcon>
               </Grid>
               <Grid item>
-                <Typography noWrap>Услуги</Typography>
+                <Typography noWrap>
+                <Link href={"/oglasi"} className={classes.link}>
+                      Услуги
+                    </Link>
+                  </Typography>
               </Grid>
             </Grid>
           </Paper>

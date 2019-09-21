@@ -18,6 +18,16 @@ export const login = (email , pass) => {
     }
    
 } 
+export const logout = (token) => {
+    return dispatch => {
+        api.logout(token , res =>{
+            dispatch({
+                type : 'LOGOUT'
+            })
+        })
+    }
+}
+
 export const register = (first_name , last_name ,location , phone_number , email , pass) => {
     return dispatch => {
         api.register(first_name , last_name , location , phone_number , email , pass , res =>{

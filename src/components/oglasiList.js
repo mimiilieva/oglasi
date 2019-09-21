@@ -8,6 +8,11 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import api from '../utils/api'
+import * as userActions from '../store/actions/userActions'
+import * as authActions from '../store/actions/authActions'
+import {connect} from 'react-redux'
+
 
 const styles = theme => ({
   title: {
@@ -44,9 +49,19 @@ const styles = theme => ({
     borderLeft: "1px solid gray",
     margin: theme.spacing.unit*1,
     padding: 10
+  },
+  oglas:{
+    
   }
 });
 class OglasiList extends React.Component {
+
+
+  componentDidMount() {
+      this.props.getPosts()
+      
+  }
+  
   render() {
     const { classes } = this.props;
     return (
@@ -68,48 +83,85 @@ class OglasiList extends React.Component {
               <CategoriesStyles />
             </Paper>
           </Grid>
-          <Grid item>
+          {this.props.user.posts.map(post => {
+            
+            return(
+            <Grid  item className={classes.oglas}>
             <Paper className={classes.paper}>
               <Grid container spacing={2}>
                 <Grid item>
                   <ButtonBase className={classes.image}>
-                    <img
-                      className={classes.img}
-                      alt="complex"
-                      src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                    />
+                  {post.PostImage ?
+                        post.PostImage.length > 0 ?
+                        <img
+                        className={classes.img}
+                        alt="complex"
+                        src={api.makeFileURL(post.PostImage[0].url, null)}
+                      />
+                        : null
+                    : null}
+                    
+                   
+                   
                   </ButtonBase>
                 </Grid>
                 <Grid item xs={12} sm container>
                   <Grid item xs container direction="column" spacing={2}>
                     <Grid item xs >
-                      <Typography variant="h5" className={classes.titleOglas}>Наслов на оглас</Typography>
-                      <Typography variant="h6"> Опис на огласоОпис на огласоОпис на огласоОпис на огласоОпис на огласоОпис на огласоОпис на огласоОпис на огласоОпис на огласо .....</Typography>
+                      <Typography variant="h5" className={classes.titleOglas}>{post.title}</Typography>
+                      <div dangerouslySetInnerHTML={{__html: post.description}}></div>
+
                       <Typography variant="body2" color="textSecondary">
-                        04.04.2013
+                        {post.createdAt}
                       </Typography>
                     </Grid>
                     <Grid item>
                       <Typography variant="body2">
-                        Име на тај шо го ставил
+                        
                       </Typography>
                       <Typography variant="body2" style={{ cursor: "pointer" }}>
-                        +389 72 312 408
+                       телефон : +389 {post.phone}
                       </Typography>
                     </Grid>
                   </Grid>
                   <Grid item className={classes.border}>
-                    <Typography variant="subtitle1"> 25 $</Typography>
-                    <Typography variant="subtitle1"><LocationOnIcon className={classes.location}/> Strumica</Typography>
+                    <Typography variant="subtitle1">{post.price} ден.</Typography>
+                    <Typography variant="subtitle1"><LocationOnIcon className={classes.location}/> {post.location}</Typography>
                   </Grid>
                 </Grid>
               </Grid>
             </Paper>
           </Grid>
+          )
+          })}
         </Grid>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(OglasiList);
+const mapStateToProps = state => {
+  return {
+      auth : state.auth,
+      user : state.user
+  }
+
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      getPosts:( token) => {
+          dispatch(userActions.getPosts(token))
+      },
+    /*  getPostImage: (postId , token) => {
+        dispatch(userActions.getPostImage(postId,token))
+      }
+      */
+      
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(OglasiList));

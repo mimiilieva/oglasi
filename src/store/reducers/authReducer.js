@@ -16,6 +16,10 @@ const auth = (state = defaultState, action) => {
                     ...state,
                     
                 }
+            case 'LOGOUT':
+                return{
+                    ...state
+                }
             default:
                 return state
 

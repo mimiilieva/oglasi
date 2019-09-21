@@ -16,14 +16,25 @@ import AddPost from "./components/user-profile/AddPost";
 import Register from "./components/LoginPage/Register";
 import OglasiList from "./components/oglasiList";
 import Profile from "./components/user-profile/Profile"
-
+import ContactPage from './components/ContactPage'
 class App extends React.Component {
   render() {
     return (
       <Router>
         <Route path="/" exact={true} component={LandingPage} />
-        <Route path="/addpost" exact={true} component={AddPost} />
-
+        <Route path="/oglasi" exact={true} component={OglasiList} />
+        <Route
+          path="/addpost"
+          exact={true}
+          render={props => {
+            return (
+              <div>
+                {this.props.auth.token ? <AddPost /> : <Login />}
+              </div>
+            );
+          }}
+        />
+        <Route path="/contact" exact={true} component={ContactPage} />
         <Route
           path="/register"
           exact={true}
@@ -44,8 +55,18 @@ class App extends React.Component {
             );
           }}
         />
-        <Route path="/profile" exact={true} component={Profile}/>
-        <Route path="/oglasi" exact={true} component={OglasiList} />
+        <Route
+          path="/profile"
+          exact={true}
+          render={props => {
+            return (
+              <div>
+                {this.props.auth.token ? <Profile /> : <Login />}
+              </div>
+            );
+          }}
+        />
+
       </Router>
     );
   }
